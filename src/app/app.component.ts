@@ -1,10 +1,13 @@
+/* eslint-disable lines-between-class-members */
+/* eslint-disable import/prefer-default-export */
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'Blog-projectAngular';
+  text = 11;
+  test = 12;
 }
