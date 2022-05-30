@@ -1,3 +1,4 @@
+import { AlertService } from './../shared/services/alert.service';
 import { Subscription } from 'rxjs';
 /* eslint-disable no-useless-constructor */
 /* eslint-disable arrow-body-style */
@@ -25,6 +26,7 @@ export class EditpostPageComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private postService: PostsService,
+    private alertService: AlertService,
   ) { }
 
   ngOnInit() {
@@ -62,6 +64,7 @@ export class EditpostPageComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.submitted = false
       })
+      this.alertService.success('Post has been modified')
     
   }
 }
