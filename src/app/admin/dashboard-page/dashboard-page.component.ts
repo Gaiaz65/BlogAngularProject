@@ -1,3 +1,4 @@
+import { AuthService } from './../shared/services/auth.service';
 import { AlertService } from './../shared/services/alert.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PostsService } from 'src/app/shared/posts.service';
@@ -21,7 +22,8 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private postsService: PostsService,
-    private alertService: AlertService) { }
+    private alertService: AlertService,
+    private auth: AuthService) { }
   
 
   ngOnInit() {
@@ -45,4 +47,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
     })
   }
   
+  test(){
+    console.log (this.auth.token)
+  }
 }

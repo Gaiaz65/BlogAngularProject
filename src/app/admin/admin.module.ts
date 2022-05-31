@@ -1,4 +1,3 @@
-
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/prefer-default-export */
 import { RouterModule } from '@angular/router';
@@ -34,19 +33,28 @@ import { AlertService } from './shared/services/alert.service';
     SharedModule,
     RouterModule.forChild([
       {
-        path: '',
+        path: "",
         component: AdminLayoutComponent,
         children: [
-          { path: '', redirectTo: '/admin/login', pathMatch: 'full' },
-          { path: 'login', component: LoginPageComponent },
-          { path: 'dashboard', component: DashboardPageComponent },
-          { path: 'createpost', component: CreatepostsPageComponent },
-          { path: 'post/:id/edit', component: EditpostPageComponent },
+          { path: "", redirectTo: "/admin/login", pathMatch: "full" },
+          { path: "login", component: LoginPageComponent },
+          {
+            path: "dashboard",
+            component: DashboardPageComponent,
+          },
+          {
+            path: "createpost",
+            component: CreatepostsPageComponent,
+          },
+          {
+            path: "post/:id/edit",
+            component: EditpostPageComponent,
+          },
         ],
       },
-    ])],
+    ]),
+  ],
   exports: [RouterModule],
   providers: [AuthService, AlertService],
 })
-
 export class AdminModule {}

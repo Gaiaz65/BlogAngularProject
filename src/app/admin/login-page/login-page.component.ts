@@ -2,7 +2,6 @@
 /* eslint-disable no-useless-constructor */
 import { FormControl,
   FormGroup,
-  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -10,7 +9,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { User } from 'src/app/shared/interfaces';
 import { AuthService } from '../shared/services/auth.service';
-
 
 @Component({
   selector: 'app-login-page',
@@ -21,7 +19,7 @@ export class LoginPageComponent implements OnInit {
   constructor(
     public auth: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   form!: FormGroup;
@@ -33,21 +31,21 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe((params: Params) => {
       if (params['loginAgain']) {
-        this.message = 'Please, specify the info'
+        this.message = 'Please, specify the info';
       } else if (params['authFailed']) {
-        this.message = 'Session has expired'
+        this.message = 'Session has expired';
       }
     })
 
     this.form = new FormGroup({
       email: new FormControl(null, [
         Validators.required,
-        Validators.email
+        Validators.email,
       ]),
       password: new FormControl(null, [
         Validators.required,
-        Validators.minLength(6)
-      ])
+        Validators.minLength(6),
+      ]),
     })
   }
 
@@ -55,12 +53,14 @@ export class LoginPageComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+
     this.submitted = true;
 
     const user: User = {
       email: this.form.value.email,
       password: this.form.value.password,
     };
+
     this.auth.login(user).subscribe({
       complete: () => {
         this.form.reset();
@@ -70,6 +70,6 @@ export class LoginPageComponent implements OnInit {
       error: () => {
         this.submitted = false;
       },
-  });
+    });
   }
 }

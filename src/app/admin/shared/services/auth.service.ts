@@ -4,7 +4,7 @@
 /* eslint-disable class-methods-use-this */
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, Subject, throwError } from 'rxjs';
+import { Observable, of, Subject, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 import { FbAuthResponse, User } from '../../../shared/interfaces';
@@ -18,7 +18,7 @@ export class AuthService {
   public error$: Subject<string> = new Subject<string>();
 
   get token(): string {
-    const expDate = new Date(localStorage.getItem('fb-token-expires'));
+    const expDate = new Date(localStorage.getItem('fb-token-exp'))
     if (new Date() > expDate) {
       this.logout();
       return null;
@@ -39,8 +39,8 @@ export class AuthService {
     this.setToken(null);
   }
 
-  isAuthenticated(): boolean {
-    return !!this.token;
+  isAuthenticated() {
+    return of(!!this.token);
   }
 
   handleError(error: HttpErrorResponse) {
