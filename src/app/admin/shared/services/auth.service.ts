@@ -40,7 +40,7 @@ export class AuthService {
   }
 
   isAuthenticated() {
-    return of(!!this.token);
+    return !!this.token;
   }
 
   handleError(error: HttpErrorResponse) {

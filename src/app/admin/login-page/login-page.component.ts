@@ -1,6 +1,7 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-useless-constructor */
-import { FormControl,
+import {
+  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
